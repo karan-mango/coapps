@@ -1,0 +1,65 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    
+    <!-- Logout button -->
+    {% if request.session.username %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    {% if is_admin %}
+    <p>Hello Admin!:::{{request.session.username}}</p>
+    <!-- Admin-specific content here -->
+
+
+
+
+
+
+    
+    {% endif %}
+
+
+
+
+
+
+    {% if is_admin == 0 %}
+    <p>Hello Employee!:{{request.session.username}}</p>
+    <!-- Employee-specific content here -->
+
+
+
+
+
+
+    {% endif %}
+
+
+
+            
+        <p>Content of your dashboard goes here...</p>
+        <a href="{% url 'new_employee' %}">Add New Employee</a>
+       
+
+
+        <br>
+        <a href="{% url 'lead_list' %}">View Leads</a>
+    {% else %}
+   <a href="{% url 'login' %}">login</a>
+    <!-- Add login form or link to login page here -->
+{% endif %}
+
+   
+    
+  
+</body>
+</html>
